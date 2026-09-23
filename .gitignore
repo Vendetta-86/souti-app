@@ -1,0 +1,18 @@
+# Node / web build output
+node_modules/
+dist/
+
+# Android local configuration and build products
+android/.gradle/
+android/.kotlin/
+android/build/
+android/app/build/
+android/local.properties
+*.apk
+*.aab
+
+# Local diagnostics and generated captures
+tmp-*.png
+*.log
+.DS_Store
+Thumbs.db

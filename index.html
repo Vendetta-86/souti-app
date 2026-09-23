@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>本地搜题</title>
+  <link rel="stylesheet" href="./src/styles.css" />
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>🔎 本地搜题</h1>
+    <span id="bank-status" class="bank-status">题库：加载中…</span>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="search">搜题</button>
+    <button class="tab" data-tab="bank">题库管理</button>
+  </nav>
+
+  <!-- 搜题 -->
+  <main id="tab-search" class="panel">
+    <div class="capture-row">
+      <button id="btn-capture" class="primary big">📸 读取屏幕</button>
+      <button id="btn-camera" class="big">🖼️ 相册/拍照</button>
+    </div>
+
+    <div id="crop-wrap" class="crop-wrap hidden">
+      <p class="hint">在截图上拖动框选出题目区域（不选则用整张图），然后点「识别并搜索」。</p>
+      <div class="crop-box">
+        <canvas id="crop-canvas"></canvas>
+        <canvas id="crop-overlay"></canvas>
+        <button id="btn-search-crop" class="search-btn">🔍 搜索</button>
+      </div>
+      <div class="row">
+        <button id="btn-recognize" class="primary">🔍 识别并搜索</button>
+        <button id="btn-cancel-crop">取消</button>
+      </div>
+    </div>
+
+    <div id="ocr-status" class="status hidden"></div>
+
+    <section id="results" class="hidden">
+      <h2>识别文本</h2>
+      <pre id="ocr-text" class="ocr-text"></pre>
+      <h2>匹配结果</h2>
+      <ul id="result-list"></ul>
+    </section>
+  </main>
+
+  <!-- 题库管理 -->
+  <main id="tab-bank" class="panel hidden">
+    <div class="row">
+      <input type="file" id="bank-file" accept=".json,.csv,.txt,.xlsx,.xls,application/json,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+      <button id="btn-clear-bank" class="danger">清空题库</button>
+    </div>
+    <p class="hint">
+      支持四种格式：<br/>
+      ① JSON：<code>[{"question":"...","answer":"..."}]</code><br/>
+      ② CSV：第一列题目、第二列答案<br/>
+      ③ TXT：奇数行题目、偶数行答案<br/>
+      ④ <b>Excel (.xlsx / .xls)：</b>第一列题目、第二列答案
+    </p>
+    <div id="bank-preview" class="hint"></div>
+  </main>
+
+  <!-- 悬浮搜题按钮（始终可见） -->
+  <button id="fab-search" class="fab" title="截屏搜题">🔍</button>
+
+  <input type="file" id="image-file" accept="image/*" capture="environment" class="hidden" />
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
