@@ -203,7 +203,6 @@ function renderResults(results) {
       <div class="result-q"></div>
       <div class="result-answer"><span class="result-ans-label">答案：</span><span class="result-ans-value"></span></div>
       ${optionsHtml ? `<div class="result-o"></div>` : ''}
-      <div class="score-bar"><div class="score-fill" style="width:${pct}%"></div></div>
       <div class="score-label">匹配度 ${pct}%</div>`;
     li.querySelector('.result-q').textContent = item.question;
     

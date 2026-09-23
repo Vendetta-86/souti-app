@@ -9,7 +9,13 @@
 </head>
 <body>
   <header class="topbar">
-    <h1>🔎 本地搜题</h1>
+    <div class="app-identity">
+      <span class="brand-mark" aria-hidden="true">题</span>
+      <div>
+        <h1>本地搜题</h1>
+        <p>离线题库检索</p>
+      </div>
+    </div>
     <span id="bank-status" class="bank-status">题库：加载中…</span>
   </header>
 
@@ -20,9 +26,14 @@
 
   <!-- 搜题 -->
   <main id="tab-search" class="panel">
+    <section class="search-intro" aria-labelledby="search-heading">
+      <p class="section-kicker">本地题库</p>
+      <h2 id="search-heading">框选题目，即刻比对</h2>
+      <p>截图文字仅用于本机识别和检索，不会上传。</p>
+    </section>
     <div class="capture-row">
-      <button id="btn-capture" class="primary big">📸 读取屏幕</button>
-      <button id="btn-camera" class="big">🖼️ 相册/拍照</button>
+      <button id="btn-capture" class="primary big">读取屏幕</button>
+      <button id="btn-camera" class="big">相册或拍照</button>
     </div>
 
     <div id="crop-wrap" class="crop-wrap hidden">
@@ -30,15 +41,15 @@
       <div class="crop-box">
         <canvas id="crop-canvas"></canvas>
         <canvas id="crop-overlay"></canvas>
-        <button id="btn-search-crop" class="search-btn">🔍 搜索</button>
+        <button id="btn-search-crop" class="search-btn">搜索</button>
       </div>
       <div class="row">
-        <button id="btn-recognize" class="primary">🔍 识别并搜索</button>
+        <button id="btn-recognize" class="primary">识别并搜索</button>
         <button id="btn-cancel-crop">取消</button>
       </div>
     </div>
 
-    <div id="ocr-status" class="status hidden"></div>
+    <div id="ocr-status" class="status hidden" role="status" aria-live="polite"></div>
 
     <section id="results" class="hidden">
       <h2>识别文本</h2>
@@ -65,7 +76,7 @@
   </main>
 
   <!-- 悬浮搜题按钮（始终可见） -->
-  <button id="fab-search" class="fab" title="截屏搜题">🔍</button>
+  <button id="fab-search" class="fab" title="截屏搜题" aria-label="截屏搜题">搜</button>
 
   <input type="file" id="image-file" accept="image/*" capture="environment" class="hidden" />
   <script type="module" src="./src/main.js"></script>
